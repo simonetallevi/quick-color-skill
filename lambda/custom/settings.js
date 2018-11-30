@@ -33,20 +33,18 @@ module.exports = {
     },
 
     // We'll use an audio sample of a ticking clock to play whenever the skill is waiting for button presses
-    // This is an audio file from the ASK Soundbank: https://developer.amazon.com/docs/custom-skills/foley-sounds.html
+    // This is an audio file from the ASK Sound bank: https://developer.amazon.com/docs/custom-skills/foley-sounds.html
     WAITING_AUDIO: '<audio src="https://s3.amazonaws.com/ask-soundlibrary/foley/amzn_sfx_rhythmic_ticking_30s_01.mp3"/>',
+    WINNING_AUDIO: '<audio src="https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_bell_timer_01.mp3"/>',
+    LOSING_AUDIO:  '<audio src="https://s3.amazonaws.com/ask-soundlibrary/musical/amzn_sfx_buzzer_small_01.mp3"/>',
 
-    // The following are going to be the colors we allow in the skill
-    COLORS_ALLOWED: [ 'blue', 'green', 'red' ],
-
-    // We'll set up a map of custom colors to each of the three allowed colord: blue, green and red
-    BREATH_CUSTOM_COLORS: { 
-        // map the 'blue' selection to a very light blue color to show as a pulsating animation, while waiting for button presses
-        'blue': '184066',
-        // map the 'green' selection to a very light blue color to show as a pulsating animation, while waiting for button presses
-        'green': '184518',
-        // map the 'red' selection to a very light blue color to show as a pulsating animation, while waiting for button presses
-        'red': '603018'
+    COLOR_SHADES: {
+        /* map the 'blue' selection to a set of shades of blue */
+        'blue':  ['0000ff', '000077', '000027', '000003'],
+        /* map the 'green' selection to a set of shades of green */
+        'green': ['00ff00', '007700', '002700', '000300'],
+        /* map the 'red' selection to a set of shades of red */
+        'red':   ['ff0000', '770000', '270000', '030000']
     },
 
     // Define animations to be played on button down and button up that are like the default animations on the buttons

@@ -117,18 +117,16 @@ const RollCall = {
         
         const ctx = handlerInput.attributesManager.getRequestAttributes();
 
-         // setup the output speech that Alexa should speak when roll call is stared, 
-         // after the skill is first launched 
-         ctx.outputSpeech = ["Welcome to the Color Changer skill."];
-         ctx.outputSpeech.push("This skill provides a brief introduction to the core");
-         ctx.outputSpeech.push("functionality that every Echo Button skill should have.");
-         ctx.outputSpeech.push("We'll cover roll call, starting and stopping the Input Handler,");
-         ctx.outputSpeech.push("button events and Input Handler timeout events. ");
-         ctx.outputSpeech.push("Let's get started with roll call. ");
-         ctx.outputSpeech.push("Roll call wakes up the buttons to make sure");
-         ctx.outputSpeech.push("they're connected and ready for play. ");
-         ctx.outputSpeech.push("Ok. Press the first button and wait for confirmation");
-         ctx.outputSpeech.push("before pressing the second button.");        
+         /* setup the output speech that Alexa should speak when roll call is stared, */
+         /* after the skill is first launched */
+         ctx.outputSpeech = ["Welcome to Quick Colors!"];
+         ctx.outputSpeech.push("We need two buttons for this game.");
+         ctx.outputSpeech.push("You'll pick a color and I'll use the ");
+         ctx.outputSpeech.push("first button to display a shade of your color.");
+         ctx.outputSpeech.push("Using the second button, you'll have to try ");
+         ctx.outputSpeech.push("to match the color I'm showing on mine.");
+         ctx.outputSpeech.push("Are you ready?");
+         ctx.outputSpeech.push("To get started, assign a button to me, by pressing it now. ");
          ctx.outputSpeech.push(Settings.WAITING_AUDIO);
 
          ctx.timeout = 50000;
@@ -182,9 +180,9 @@ const RollCall = {
         //  was already handled, we check the make sure the `buttonCount` attribute is set to 0;
         //   if not, we will silently ignore the event
         if (sessionAttributes.buttonCount === 0) {                        
-            // Say something when we first encounter a button
-            ctx.outputSpeech = ['Hello, button 1.'];
-            ctx.outputSpeech.push(Settings.WAITING_AUDIO);
+            /* Say something when we first encounter a button */
+            ctx.outputSpeech = ["Thanks! I'll use this button. Now, add one more for yourself."];
+            ctx.outputSpeech.push(Settings.WAITING_AUDIO)
 
             let fistButtonId = ctx.gameInputEvents[0].gadgetId;
             ctx.directives.push(GadgetDirectives.setIdleAnimation(
@@ -209,19 +207,19 @@ const RollCall = {
         ctx.outputSpeech = [];
 
         if (sessionAttributes.buttonCount == 0) {
-            // just got both buttons at the same time
-            ctx.outputSpeech.push("hello buttons 1 and 2");
+            /* just got both buttons at the same time */
+            ctx.outputSpeech.push("We both have buttons.");
             ctx.outputSpeech.push("<break time='1s'/>");
-            ctx.outputSpeech.push("Awesome!");
+            ctx.outputSpeech.push("Awesome. Let's start the game!");
 
             sessionAttributes.DeviceIDs[1] = gameInputEvents[0].gadgetId;
             sessionAttributes.DeviceIDs[2] = gameInputEvents[1].gadgetId;
 
         } else {
-            // already had button 1, just got button 2..
-            ctx.outputSpeech.push("hello, button 2");
+            /* already had button 1, just got button 2.. */
+            ctx.outputSpeech.push("I see your button too.");
             ctx.outputSpeech.push("<break time='1s'/>");
-            ctx.outputSpeech.push("Awesome. I've registered two buttons.");
+            ctx.outputSpeech.push("Let's start the game!");
 
             if (sessionAttributes.DeviceIDs.indexOf(gameInputEvents[0].gadgetId) === -1) {
                 sessionAttributes.DeviceIDs[2] = gameInputEvents[0].gadgetId;
@@ -231,9 +229,8 @@ const RollCall = {
         }
         sessionAttributes.buttonCount = 2;
         
-        // .. and ask use to pick a color for the next stage of the skill 
-        ctx.outputSpeech.push("Now let's learn about button events.");
-        ctx.outputSpeech.push("Please select one of the following colors: red, blue, or green.");                                  
+        /* .. and ask use to pick a color for the next stage of the skill */
+        ctx.outputSpeech.push("Choose a color: red, blue, or green.");
             
         let deviceIds = sessionAttributes.DeviceIDs;
         deviceIds = deviceIds.slice(-2);

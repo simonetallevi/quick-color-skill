@@ -1,7 +1,7 @@
 {
     "interactionModel": {
       "languageModel": {
-        "invocationName": "colour changer",
+        "invocationName": "quick colors",
         "intents": [
           {
             "name": "AMAZON.CancelIntent"

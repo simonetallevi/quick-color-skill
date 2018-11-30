@@ -116,24 +116,25 @@ const GlobalHandlers = {
                 outputSpeech = "";
             if (sessionAttributes.isRollCallComplete === true) {
                 // roll call is complete
-                ctx.reprompt = ["Pick a color to test your buttons: red, blue, or green. "];
+                ctx.reprompt = ["To continue, pick a color: red, blue, or green. "];
                 ctx.reprompt.push(" Or say cancel or exit to quit. ");
-
-                ctx.outputSpeech = ["Now that you have registered two buttons, "];
-                ctx.outputSpeech.push("you can pick a color to show when the buttons are pressed. ");
-                ctx.outputSpeech.push("Select one of the following colors: red, blue, or green. ");                
-                ctx.outputSpeech.push("If you do not wish to continue, you can say exit. ");                
-            } else {            
+                ctx.outputSpeech = ["Now that we each have a button, you can select a color "];
+                ctx.outputSpeech.push(" for me to challenge you. ");
+                ctx.outputSpeech.push("Select one of the following colors: red, blue, or green. ");
+                ctx.outputSpeech.push("I will display a shade of your color of choice ");
+                ctx.outputSpeech.push("and wait for you to match it on your button. ");
+                ctx.outputSpeech.push("If you do not wish to continue, you can say exit. ");
+            } else {
                 // the user hasn't yet completed roll call
                 ctx.reprompt = ["You can say yes to continue, or no or exit to quit."];
-                ctx.outputSpeech = ["You will need two Echo buttons to to use this skill. "];
+                ctx.outputSpeech = ["You will need two Echo buttons to play this game. "];
                 ctx.outputSpeech.push("Each of the two buttons you plan to use ");
-                ctx.outputSpeech.push("must be pressed for the skill to register them. ");
+                ctx.outputSpeech.push("must be pressed in turn, to be added to the game. ");
                 ctx.outputSpeech.push("Would you like to continue and register two Echo buttons? ");
-                                
+
                 sessionAttributes.expectingEndSkillConfirmation = true;
-            }  
-            
+            }
+
             return handlerInput.responseBuilder.getResponse();
         }
     },
@@ -228,9 +229,15 @@ const GlobalHandlers = {
                 return RollCall.StartRollCall(handlerInput);
             } else if (state === Settings.SKILL_STATES.EXIT_MODE 
                 && sessionAttributes.expectingEndSkillConfirmation === true) {
-                return GlobalHandlers.SessionEndedRequestHandler.handle(handlerInput);                                
+
+                ctx.reprompt = ["Pick a different color, red, blue, or green."];
+                ctx.outputSpeech = ["Ok, let's keep going."];
+                ctx.outputSpeech.push(ctx.reprompt);
+                ctx.openMicrophone = true;
+                sessionAttributes.state = Settings.SKILL_STATES.PLAY_MODE;
+                return handlerInput.responseBuilder.getResponse();
             } else if (state === Settings.SKILL_STATES.EXIT_MODE) {
-                // ---- Hanlde "Yes", if we're in EXIT_MODE, but not expecting exit confirmation
+                // ---- Handle "Yes", if we're in EXIT_MODE, but not expecting exit confirmation
                 return GlobalHandlers.DefaultHandler.handle(handlerInput);
             } else {
                 // ---- Hanlde "Yes" in other cases .. just fall back on the help intent
@@ -259,17 +266,12 @@ const GlobalHandlers = {
                 && sessionAttributes.expectingEndSkillConfirmation === true) {
                 // if user says No when prompted whether they will to continue with rollcall then just exit
                 return GlobalHandlers.StopIntentHandler.handle(handlerInput);
-            } if (state === Settings.SKILL_STATES.EXIT_MODE 
-                && sessionAttributes.expectingEndSkillConfirmation === true) { 
-                ctx.reprompt = ["Pick a different color, red, blue, or green."];
-                ctx.outputSpeech = ["Ok, let's keep going."];
-                ctx.outputSpeech.push(ctx.reprompt);
-                ctx.openMicrophone = true;
-                sessionAttributes.state = Settings.SKILL_STATES.PLAY_MODE;
-                return handlerInput.responseBuilder.getResponse();
+            } else if (state === Settings.SKILL_STATES.EXIT_MODE
+                 && sessionAttributes.expectingEndSkillConfirmation === true) {
+                 return GlobalHandlers.SessionEndedRequestHandler.handle(handlerInput);
             } else if (state === Settings.SKILL_STATES.EXIT_MODE) {
-                // ---- Hanlde "No" in other cases .. just fall back on the help intent
-                return GlobalHandlers.DefaultHandler.handle(handlerInput);
+                 // ---- Handle "No" in other cases .. just fall back on the help intent
+                 return GlobalHandlers.DefaultHandler.handle(handlerInput);
             } else {
                 // ---- Hanlde "No" in other cases .. just fall back on the help intent
                 return GlobalHandlers.HelpIntentHandler.handle(handlerInput);

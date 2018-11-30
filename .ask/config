@@ -1,14 +1,61 @@
 {
   "deploy_settings": {
-    "color-changer": {
+    "quick-colors": {
       "skill_id": "",
       "was_cloned": false,
-      "merge": {}
+      "merge": {
+        "manifest": {
+          "apis": {
+            "custom": {
+              "endpoint": {
+                "uri": "quick-colors-skill"
+              }
+            }
+          }
+        }
+      }
     },
     "default": {
-      "skill_id": "",
+      "skill_id": "amzn1.ask.skill.e11e2020-7736-4db3-90d3-80da87b67c7c",
       "was_cloned": false,
-      "merge": {}
+      "merge": {
+        "manifest": {
+          "apis": {
+            "custom": {
+              "endpoint": {
+                "uri": "arn:aws:lambda:us-east-1:080864755597:function:quick-colors-skill"
+              }
+            }
+          }
+        }
+      },
+      "resources": {
+        "manifest": {
+          "eTag": "6c52589efeecafe405abb7b80a122853"
+        },
+        "interactionModel": {
+          "en-US": {
+            "eTag": "404b46bb509ec517e2b7c0348f331013"
+          },
+          "en-GB": {
+            "eTag": "83fecf1ae68a5a5d683f4ac3c97e2098"
+          }
+        },
+        "lambda": [
+          {
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "arn": "arn:aws:lambda:us-east-1:080864755597:function:quick-colors-skill",
+            "awsRegion": "us-east-1",
+            "codeUri": "lambda/custom",
+            "functionName": "quick-colors-skill",
+            "handler": "index.handler",
+            "revisionId": "33efe0d4-d90b-4f1d-9c91-1e7bb4c2a1f4",
+            "runtime": "nodejs8.10"
+          }
+        ]
+      }
     }
   }
 }

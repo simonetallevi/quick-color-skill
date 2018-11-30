@@ -3,31 +3,31 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "summary": "This is an example skill to show how to use the Alexa Gadgets API",
+          "summary": "Quick Colors",
           "examplePhrases": [
-            "Alexa, open color changer",
-            "Alexa, launch color changer"
+            "Alexa, quick color",
+            "Alexa, launch quick color"
           ],
           "keywords": [
             "buttons",
             "games"
           ],
-          "name": "color changer",
-          "description": "A Color Changer skill that showcases Echo Buttons functionality. The skill asks users to use to buttons, register them with the skill, and then use their voice to change the light animations playing on the buttons."
+          "name": "quick color",
+          "description": "A simple Echo Buttons game."
         },
         "en-GB": {
-          "summary": "This is an example skill to show how to use the Alexa Gadgets API",
-            "examplePhrases": [
-              "Alexa, open colour changer",
-              "Alexa, launch colour changer"
+          "summary": "Quick Colors",
+          "examplePhrases": [
+            "Alexa, quick color",
+            "Alexa, launch quick color"
           ],
           "keywords": [
             "buttons",
             "games"
           ],
-          "name": "colour changer",
-          "description": "A Colour Changer skill that showcases Echo Buttons functionality. The skill asks users to use to buttons, register them with the skill, and then use their voice to change the light animations playing on the buttons."
-        }      
+          "name": "quick colors",
+          "description": "A simple Echo Buttons game."
+        }
       },
       "isAvailableWorldwide": true,
       "testingInstructions": "Open the skill and follow the prompts. You will need two Echo buttons to test.",
