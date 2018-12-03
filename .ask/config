@@ -31,7 +31,7 @@
       },
       "resources": {
         "manifest": {
-          "eTag": "6c52589efeecafe405abb7b80a122853"
+          "eTag": "6c014a7979ca4c6f94b36a00e7f33c1b"
         },
         "interactionModel": {
           "en-US": {
@@ -39,6 +39,9 @@
           },
           "en-GB": {
             "eTag": "83fecf1ae68a5a5d683f4ac3c97e2098"
+          },
+          "it-IT": {
+            "eTag": "90f8fd1756acfd5e90ede252a023144c"
           }
         },
         "lambda": [
@@ -51,7 +54,7 @@
             "codeUri": "lambda/custom",
             "functionName": "quick-colors-skill",
             "handler": "index.handler",
-            "revisionId": "33efe0d4-d90b-4f1d-9c91-1e7bb4c2a1f4",
+            "revisionId": "7a4a6a92-9f63-44a5-afe2-2a0736d8aef0",
             "runtime": "nodejs8.10"
           }
         ]

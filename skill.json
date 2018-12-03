@@ -5,8 +5,8 @@
         "en-US": {
           "summary": "Quick Colors",
           "examplePhrases": [
-            "Alexa, quick color",
-            "Alexa, launch quick color"
+            "Alexa, quick colors",
+            "Alexa, launch quick colors"
           ],
           "keywords": [
             "buttons",
@@ -15,11 +15,24 @@
           "name": "quick color",
           "description": "A simple Echo Buttons game."
         },
+        "it-IT": {
+          "summary": "Colori Veloci",
+          "examplePhrases": [
+            "Alexa, colori veloci",
+            "Alexa, apri colori veloci"
+          ],
+          "keywords": [
+            "buttons",
+            "games"
+          ],
+          "name": "colori veloci",
+          "description": "A simple Echo Buttons game."
+        },
         "en-GB": {
           "summary": "Quick Colors",
           "examplePhrases": [
-            "Alexa, quick color",
-            "Alexa, launch quick color"
+            "Alexa, quick colors",
+            "Alexa, launch quick colors"
           ],
           "keywords": [
             "buttons",
